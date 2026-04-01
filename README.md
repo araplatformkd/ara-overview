@@ -3,18 +3,23 @@
 [araplatformkd](https://github.com/araplatformkd) 조직의 **ARA(시설·온실 자동화) 플랫폼** 관련 저장소들의 역할, 관계, 권장 설치 순서를 한곳에서 안내합니다.  
 코드 본문은 각 하위 저장소에 있으며, 이 저장소는 **문서·내비게이션** 용도입니다.
 
+조직 프로필 **Overview** 상단 안내는 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`에서 이 레포로 연결합니다.  
+Repositories 목록의 **Popular** 정렬은 스타 등을 참고하므로, 상단 고정이 필요하면 조직 **Owner**가 [프로필에 Pin](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#pinning-repositories-to-your-organizations-profile)하면 됩니다(UI에서는 *Pinned* 섹션으로 표시).
+
 ---
 
 ## 저장소 맵
 
-| 저장소 | 설명 |
-|--------|------|
-| [**ara-overview**](https://github.com/araplatformkd/ara-overview) | (이 저장소) 전체 구조·연동·시작 가이드 |
-| [**ara-edge-server211**](https://github.com/araplatformkd/ara-edge-server211) | **AG Edge Server** — 온실·시설용 엣지(Node.js). HTTP·정적 리소스·MQTT 브로커·웹앱 레지스트리·시설 관리(`ag.system.facility`) 등 |
-| [**ara-backend-node**](https://github.com/araplatformkd/ara-backend-node) | **현장 백엔드** — Raspberry Pi 등에서 동작하는 Node.js 기반 실내/온실 자동화(MQTT·Modbus·InfluxDB·Express 등) |
-| [**ara-front-web**](https://github.com/araplatformkd/ara-front-web) | **웹 관리자·대시보드** 프론트엔드(AdminLTE 기반 UI 등) |
-| [**ara-mobile-app**](https://github.com/araplatformkd/ara-mobile-app) | **모바일 앱** — Flutter 기반(WebView·Cordova 대체 마이그레이션 등) |
-| [**ara-system**](https://github.com/araplatformkd/ara-system) | (선택) 모노레포·부가 프로젝트 묶음 — 팀 정책에 따라 소규모 웹·테스트 자산 |
+
+| 저장소                                                                           | 설명                                                                                                   |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **[ara-overview](https://github.com/araplatformkd/ara-overview)**             | (이 저장소) 전체 구조·연동·시작 가이드                                                                              |
+| **[ara-edge-server211](https://github.com/araplatformkd/ara-edge-server211)** | **AG Edge Server** — 온실·시설용 엣지(Node.js). HTTP·정적 리소스·MQTT 브로커·웹앱 레지스트리·시설 관리(`ag.system.facility`) 등 |
+| **[ara-backend-node](https://github.com/araplatformkd/ara-backend-node)**     | **현장 백엔드** — Raspberry Pi 등에서 동작하는 Node.js 기반 실내/온실 자동화(MQTT·Modbus·InfluxDB·Express 등)              |
+| **[ara-front-web](https://github.com/araplatformkd/ara-front-web)**           | **웹 관리자·대시보드** 프론트엔드(AdminLTE 기반 UI 등)                                                               |
+| **[ara-mobile-app](https://github.com/araplatformkd/ara-mobile-app)**         | **모바일 앱** — Flutter 기반(WebView·Cordova 대체 마이그레이션 등)                                                  |
+| **[ara-system](https://github.com/araplatformkd/ara-system)**                 | (선택) 모노레포·부가 프로젝트 묶음 — 팀 정책에 따라 소규모 웹·테스트 자산                                                         |
+
 
 > 일부 저장소는 비공개(Private)일 수 있습니다. 접근이 필요하면 조직 관리자에게 권한을 요청하세요.
 
@@ -47,6 +52,8 @@ flowchart LR
   clients <-- "HTTP / API" --> edge
   clients <-- "HTTP / API" --> field
 ```
+
+
 
 - **ara-edge-server211**: 시설 단위 **플랫폼 코어**. 웹앱을 등록·실행하고, MQTT로 장비·서비스를 묶습니다. `workspace/` 아래 앱(예: 시설 관리, 제어기·양액기 연동, CCTV 등)이 동작합니다.
 - **ara-backend-node**: **개별 온실/실내 노드**에서 센서·구동기·자동운전·시계열 저장을 담당하는 백엔드입니다. Influx·MQTT 시뮬레이터 등이 포함됩니다.
