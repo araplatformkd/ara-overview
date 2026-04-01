@@ -8,10 +8,10 @@
 
 **저장소 카드(Pinned / Popular)** 가 Overview에 보이게 하려면 GitHub가 자동으로만 채워 주지 않고, 조직 **Owner**가 아래처럼 **Pin**을 해야 합니다.
 
-1. [github.com/araplatformkd](https://github.com/araplatformkd) → **Overview** 탭  
-2. 오른쪽 **View as** → **Public** 선택(비회원이 보는 화면과 동일하게 맞춤)  
-3. 오른쪽 사이드바에서 **Pin repositories** 또는 **Customize pins** 클릭  
-4. **ara-overview**(및 필요 시 다른 공개 저장소) 선택 후 저장  
+1. [github.com/araplatformkd](https://github.com/araplatformkd) → **Overview** 탭
+2. 오른쪽 **View as** → **Public** 선택(비회원이 보는 화면과 동일하게 맞춤)
+3. 오른쪽 사이드바에서 **Pin repositories** 또는 **Customize pins** 클릭
+4. **ara-overview**(및 필요 시 다른 공개 저장소) 선택 후 저장
 
 자세한 설명: [Pinning repositories to your organization's profile](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#pinning-repositories-to-your-organizations-profile).
 
@@ -66,7 +66,11 @@ flowchart LR
 
 - **ara-edge-server211**: 시설 단위 **플랫폼 코어**. 웹앱을 등록·실행하고, MQTT로 장비·서비스를 묶습니다. `workspace/` 아래 앱(예: 시설 관리, 제어기·양액기 연동, CCTV 등)이 동작합니다.
 - **ara-backend-node**: **개별 온실/실내 노드**에서 센서·구동기·자동운전·시계열 저장을 담당하는 백엔드입니다. Influx·MQTT 시뮬레이터 등이 포함됩니다.
-- **ara-front-web** / **ara-mobile-app**: 운영자·관리자가 상태를 보고 설정하는 **UI 계층**입니다. 실제 연결 URL·API는 배포 환경(엣지 IP, 도메인, 리버스 프록시)에 맞춥니다.
+- **ara-front-web** : 웹앱으로 제작되어 졌으며 실시간 모니터링 및 환경설정 앱입니다.  
+- **ara-mobile-app**: 
+  - 운영자·관리자가 상태를 보고 설정하는 **UI 계층**입니다. 실제 연결 URL·API는 배포 환경(엣지 IP, 도메인, 리버스 프록시)에 맞춥니다.
+  - Cordova WebView 를 활용하여 안드로이드앱을 제작하여 Google Firebase Storage 를 통해 앱업데이트 연동되어져 있습니다. 
+  - Flutter WebViewe 를 활용하여 제작된 안드로이드 앱. (현재 이 앱은 서비스 되고 있지 않음)
 
 ---
 
