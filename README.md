@@ -3,8 +3,16 @@
 [araplatformkd](https://github.com/araplatformkd) 조직의 **ARA(시설·온실 자동화) 플랫폼** 관련 저장소들의 역할, 관계, 권장 설치 순서를 한곳에서 안내합니다.  
 코드 본문은 각 하위 저장소에 있으며, 이 저장소는 **문서·내비게이션** 용도입니다.
 
-조직 프로필 **Overview** 상단 안내는 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`에서 이 레포로 연결합니다.  
-Repositories 목록의 **Popular** 정렬은 스타 등을 참고하므로, 상단 고정이 필요하면 조직 **Owner**가 [프로필에 Pin](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#pinning-repositories-to-your-organizations-profile)하면 됩니다(UI에서는 *Pinned* 섹션으로 표시).
+조직 **Overview** 상단에 안내 문구가 뜨게 하려면 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)에 `profile/README.md`가 있어야 합니다(이미 구성됨).
+
+**저장소 카드(Pinned / Popular)** 가 Overview에 보이게 하려면 GitHub가 자동으로만 채워 주지 않고, 조직 **Owner**가 아래처럼 **Pin**을 해야 합니다.
+
+1. [github.com/araplatformkd](https://github.com/araplatformkd) → **Overview** 탭  
+2. 오른쪽 **View as** → **Public** 선택(비회원이 보는 화면과 동일하게 맞춤)  
+3. 오른쪽 사이드바에서 **Pin repositories** 또는 **Customize pins** 클릭  
+4. **`ara-overview`**(및 필요 시 다른 공개 저장소) 선택 후 저장  
+
+자세한 설명: [Pinning repositories to your organization's profile](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#pinning-repositories-to-your-organizations-profile).
 
 ---
 
