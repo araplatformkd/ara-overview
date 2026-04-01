@@ -3,7 +3,8 @@
 [araplatformkd](https://github.com/araplatformkd) 조직의 **ARA(시설·온실 자동화) 플랫폼** 관련 저장소들의 역할, 관계, 권장 설치 순서를 한곳에서 안내합니다.  
 코드 본문은 각 하위 저장소에 있으며, 이 저장소는 **문서·내비게이션** 용도입니다.
 
-조직 **Overview** 상단에 안내 문구가 뜨게 하려면 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)에 `profile/README.md`가 있어야 합니다(이미 구성됨).
+> **조직 방문자에게 먼저 보이게 하기:** GitHub는 조직 **Overview**에 이 파일을 직접 붙일 수 없고, 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 [`profile/README.md`](https://github.com/araplatformkd/.github/blob/main/profile/README.md)만 최상단에 렌더링합니다.  
+> 내용은 이 `README.md`와 맞춰 두었습니다. **문서를 고치면** `ara-overview`와 `.github/profile/README.md` **둘 다** 반영해 주세요.
 
 **저장소 카드(Pinned / Popular)** 가 Overview에 보이게 하려면 GitHub가 자동으로만 채워 주지 않고, 조직 **Owner**가 아래처럼 **Pin**을 해야 합니다.
 
