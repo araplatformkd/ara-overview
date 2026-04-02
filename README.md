@@ -7,10 +7,12 @@
 
 ### 이 README만 수정해서 조직 홈에 올리는 방법
 
-| 방식 | 할 일 |
-|------|--------|
+
+| 방식          | 할 일                                                                                                                                                           |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **자동 (권장)** | 아래 [GitHub Actions 동기화](#github-actions로-조직-profile-자동-반영)를 한 번만 설정해 두면, 이 파일(`README.md`)을 `master`/`main`에 push할 때마다 `.github/profile/README.md`가 같이 갱신됩니다. |
-| **수동** | [araplatformkd/.github](https://github.com/araplatformkd/.github)에서 `profile/README.md`를 이 파일과 동일하게 고친 뒤 커밋·푸시합니다. |
+| **수동**      | [araplatformkd/.github](https://github.com/araplatformkd/.github)에서 `profile/README.md`를 이 파일과 동일하게 고친 뒤 커밋·푸시합니다.                                            |
+
 
 **저장소 카드(Pinned / Popular)** 가 Overview에 보이게 하려면 GitHub가 자동으로만 채워 주지 않고, 조직 **Owner**가 아래처럼 **Pin**을 해야 합니다.
 
@@ -27,14 +29,14 @@
 
 `README.md`만 고쳐서 [조직 Overview](https://github.com/araplatformkd)에 반영하려면, 이 저장소의 워크플로가 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`를 덮어씁니다.
 
-1. **토큰 만들기** (조직/저장소에 쓸 수 있는 계정으로 로그인)  
-   - **Fine-grained PAT** (권장): 대상 조직 `araplatformkd` → 저장소 **`.github`만** 선택 → **Contents: Read and write**  
-   - 또는 **Classic PAT**: `repo` 범위 (범위가 더 넓음)
-2. [**ara-overview** → Settings → Secrets and variables → Actions](https://github.com/araplatformkd/ara-overview/settings/secrets/actions) → **New repository secret**  
-   - Name: `ORG_PROFILE_SYNC_PAT`  
-   - Value: 위에서 만든 토큰
-3. `master` 또는 `main`에 `README.md`를 **push**하면 워크플로 **Sync org profile README**가 실행됩니다.  
-   - 필요 시 [Actions 탭](https://github.com/araplatformkd/ara-overview/actions)에서 **Run workflow**로 수동 실행할 수 있습니다.
+1. **토큰 만들기** (조직/저장소에 쓸 수 있는 계정으로 로그인)
+  - **Fine-grained PAT** (권장): 대상 조직 `araplatformkd` → 저장소 `**.github`만** 선택 → **Contents: Read and write**  
+  - 또는 **Classic PAT**: `repo` 범위 (범위가 더 넓음)
+2. **[ara-overview** → Settings → Secrets and variables → Actions](https://github.com/araplatformkd/ara-overview/settings/secrets/actions) → **New repository secret**
+  - Name: `ORG_PROFILE_SYNC_PAT`  
+  - Value: 위에서 만든 토큰
+3. `master` 또는 `main`에 `README.md`를 **push**하면 워크플로 **Sync org profile README**가 실행됩니다.
+  - 필요 시 [Actions 탭](https://github.com/araplatformkd/ara-overview/actions)에서 **Run workflow**로 수동 실행할 수 있습니다.
 
 토큰을 넣기 전에는 **수동**으로 `.github`의 `profile/README.md`를 맞춰 두어야 조직 홈 문구가 바뀝니다.
 
@@ -94,7 +96,7 @@ flowchart LR
   - 운영자·관리자가 상태를 보고 설정하는 **UI 계층**입니다. 실제 연결 URL·API는 배포 환경(엣지 IP, 도메인, 리버스 프록시)에 맞춥니다.
   - Cordova WebView 를 활용하여 안드로이드앱을 제작하여 Google Firebase Storage 를 통해 앱업데이트 연동되어져 있습니다. 
   - Flutter WebViewe 를 활용하여 제작된 안드로이드 앱. (현재 이 앱은 서비스 되고 있지 않음).
-  - 테스트 
+  - 테스트
 
 ---
 
@@ -113,6 +115,9 @@ flowchart LR
 - **시작점**: 저장소 루트 `README.md`의 “Git 클론 후 바로 실행”, `install.md`(Node/Python·빌드 도구).
 - **설정**: `config.json`(HTTP/MQTT 포트, `workspace` 경로 등).
 
+※ ./workspace 폴더에는 개발소스 전체가 포함되어져 있습니다. "개발 > .tar > 클라우드 업로드 > 사용자다운로드 > 설치" 순서로 앱은 설치가 됩니다   
+
+
 ```bash
 git clone https://github.com/araplatformkd/ara-edge-server211.git
 cd ara-edge-server211
@@ -121,9 +126,14 @@ npm install
 npm start
 ```
 
-### 3. ara-backend-node (온실·실내 노드)
+### 3. ara-backend-node (온실·실내 노드) 
+
+- **포함**: 양액기 / 환경제어의 두시스템 모두 동일한 백엔드를 사용합니다. 
+  - 해당시스템의 MQTT topic 에 따라 재시작시 적용됩니다. 
+  - "/home/pi/kd/indoor/config.js 내에 정의되어진 토픽키가 "../IRRIGATION/..." 이면 양액기로 작동, "../SWITCHGEAR/..." 이면 환경제어로 작동됩니다. 
 
 - **역할**: Pi 등에서 `indexIndoorV2.js` 중심으로 MQTT·Modbus·Influx·웹을 구동.
+- 
 - **요구**: Node.js **22.x** 권장(저장소 `.nvmrc` / Volta 기준).
 - **빌드**: `npm install` 후 `npm run build`로 `dist/` 생성·배포.
 
