@@ -13,10 +13,10 @@
 1. 백엔드 / 프런트엔드 의 `dist/` 폴더는 현장설치 디바이스의 백엔드/프런트엔드에 자동업데이트 설정이 되어져 있습니다(주의!!!). 
   - 프런트앱의 [pi-auto-update-dist.js](https://github.com/araplatformkd/ara-front-web/tools/)파일은 디바이스에 설치되어져 pm2 process 로 자동 실행됩니다. 
   - 동일한 파일에서 백엔드/프런트엔드 앱이 각각의 설정으로 업데이트 합니다. 
-2. 2가지 백엔드 설정파일(필수)은 디바이스에 설치되어져 있습니다. 
+2. 백엔드 시스템의 설정파일(필수)은 디바이스에 설치되어져 있습니다. 
   - `./config/indoor-config.json` 자동운전 / 핀맵 / 센서맵 등의 설정파일 
   - `./config.js` : 모드버스통신을 위한 설정파일 
-3. 
+3. 디바이스의 OS는 **SD Card Copier** 앱을 활용합니다.
 
 `README.md`만 고쳐서 [조직 Overview](https://github.com/araplatformkd)에 반영하려면, 이 저장소의 워크플로가 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`를 덮어씁니다.
 
