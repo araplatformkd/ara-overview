@@ -208,7 +208,7 @@ npm run release
 ## 로컬 디렉터리 예시 (여러 저장소를 나란히 둘 때)
 
 ```text
-DEV_ARA/
+클론폴더/
 ├── ara-overview/           # 이 메타 저장소
 ├── ara-documents/          # 각종 문서 및 기술자료(저장소 만들예정)
 ├── ara-edge-server211/     # 아라플랫폼 프레임워크
