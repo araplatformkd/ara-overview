@@ -3,25 +3,9 @@
 [araplatformkd](https://github.com/araplatformkd) 조직의 **ARA(시설·온실 자동화) 플랫폼** 관련 저장소들의 역할, 관계, 권장 설치 순서를 한곳에서 안내합니다.  
 코드 본문은 각 하위 저장소에 있으며, 이 저장소는 **문서·내비게이션** 용도입니다.
 
-> **조직 방문자에게 먼저 보이게 하기:** [github.com/araplatformkd](https://github.com/araplatformkd) **Overview**에는 이 레포의 `README.md`가 아니라, 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 [profile/README.md](https://github.com/araplatformkd/.github/blob/main/profile/README.md)만 최상단에 렌더링됩니다.
+각 저장소의 자세한 내용은 각 저장소의 [README.md](http://README.md) 파일에 자세히 설명되어져 있습니다. 
 
-### 이 README만 수정해서 조직 홈에 올리는 방법
-
-
-| 방식          | 할 일                                                                                                                                                           |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **자동 (권장)** | 아래 [GitHub Actions 동기화](#github-actions로-조직-profile-자동-반영)를 한 번만 설정해 두면, 이 파일(`README.md`)을 `master`/`main`에 push할 때마다 `.github/profile/README.md`가 같이 갱신됩니다. |
-| **수동**      | [araplatformkd/.github](https://github.com/araplatformkd/.github)에서 `profile/README.md`를 이 파일과 동일하게 고친 뒤 커밋·푸시합니다.                                            |
-
-
-**저장소 카드(Pinned / Popular)** 가 Overview에 보이게 하려면 GitHub가 자동으로만 채워 주지 않고, 조직 **Owner**가 아래처럼 **Pin**을 해야 합니다.
-
-1. [github.com/araplatformkd](https://github.com/araplatformkd) → **Overview** 탭
-2. 오른쪽 **View as** → **Public** 선택(비회원이 보는 화면과 동일하게 맞춤)
-3. 오른쪽 사이드바에서 **Pin repositories** 또는 **Customize pins** 클릭
-4. **ara-overview**(및 필요 시 다른 공개 저장소) 선택 후 저장
-
-자세한 설명: [Pinning repositories to your organization's profile](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#pinning-repositories-to-your-organizations-profile).
+>
 
 ---
 
