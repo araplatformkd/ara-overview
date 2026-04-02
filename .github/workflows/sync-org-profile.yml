@@ -1,0 +1,42 @@
+# README.md → araplatformkd/.github/profile/README.md (조직 Overview 상단 문서)
+# 사용법: ara-overview 저장소 Secrets에 ORG_PROFILE_SYNC_PAT 추가 (Fine-grained: .github repo Contents R/W)
+
+name: Sync org profile README
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - "README.md"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.repository == 'araplatformkd/ara-overview'
+    steps:
+      - name: Checkout ara-overview
+        uses: actions/checkout@v4
+
+      - name: Checkout .github
+        uses: actions/checkout@v4
+        with:
+          repository: araplatformkd/.github
+          token: ${{ secrets.ORG_PROFILE_SYNC_PAT }}
+          path: dotgithub
+
+      - name: Copy README and push
+        run: |
+          set -e
+          mkdir -p dotgithub/profile
+          cp -f README.md dotgithub/profile/README.md
+          cd dotgithub
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/README.md
+          if git diff --staged --quiet; then
+            echo "No content change; skipping commit."
+            exit 0
+          fi
+          git commit -m "sync: profile README from ara-overview@${GITHUB_SHA:0:7}"
+          git push origin HEAD

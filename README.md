@@ -3,8 +3,14 @@
 [araplatformkd](https://github.com/araplatformkd) 조직의 **ARA(시설·온실 자동화) 플랫폼** 관련 저장소들의 역할, 관계, 권장 설치 순서를 한곳에서 안내합니다.  
 코드 본문은 각 하위 저장소에 있으며, 이 저장소는 **문서·내비게이션** 용도입니다.
 
-> **조직 방문자에게 먼저 보이게 하기:** GitHub는 조직 **Overview**에 이 파일을 직접 붙일 수 없고, 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 [profile/README.md](https://github.com/araplatformkd/.github/blob/main/profile/README.md)만 최상단에 렌더링합니다.  
-> 내용은 이 README와 맞춰 두었습니다. **문서를 고치면** ara-overview와 `.github/profile/README.md` **둘 다** 반영해 주세요.
+> **조직 방문자에게 먼저 보이게 하기:** [github.com/araplatformkd](https://github.com/araplatformkd) **Overview**에는 이 레포의 `README.md`가 아니라, 공개 저장소 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 [profile/README.md](https://github.com/araplatformkd/.github/blob/main/profile/README.md)만 최상단에 렌더링됩니다.
+
+### 이 README만 수정해서 조직 홈에 올리는 방법
+
+| 방식 | 할 일 |
+|------|--------|
+| **자동 (권장)** | 아래 [GitHub Actions 동기화](#github-actions로-조직-profile-자동-반영)를 한 번만 설정해 두면, 이 파일(`README.md`)을 `master`/`main`에 push할 때마다 `.github/profile/README.md`가 같이 갱신됩니다. |
+| **수동** | [araplatformkd/.github](https://github.com/araplatformkd/.github)에서 `profile/README.md`를 이 파일과 동일하게 고친 뒤 커밋·푸시합니다. |
 
 **저장소 카드(Pinned / Popular)** 가 Overview에 보이게 하려면 GitHub가 자동으로만 채워 주지 않고, 조직 **Owner**가 아래처럼 **Pin**을 해야 합니다.
 
@@ -14,6 +20,23 @@
 4. **ara-overview**(및 필요 시 다른 공개 저장소) 선택 후 저장
 
 자세한 설명: [Pinning repositories to your organization's profile](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#pinning-repositories-to-your-organizations-profile).
+
+---
+
+## GitHub Actions로 조직 profile 자동 반영
+
+`README.md`만 고쳐서 [조직 Overview](https://github.com/araplatformkd)에 반영하려면, 이 저장소의 워크플로가 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`를 덮어씁니다.
+
+1. **토큰 만들기** (조직/저장소에 쓸 수 있는 계정으로 로그인)  
+   - **Fine-grained PAT** (권장): 대상 조직 `araplatformkd` → 저장소 **`.github`만** 선택 → **Contents: Read and write**  
+   - 또는 **Classic PAT**: `repo` 범위 (범위가 더 넓음)
+2. [**ara-overview** → Settings → Secrets and variables → Actions](https://github.com/araplatformkd/ara-overview/settings/secrets/actions) → **New repository secret**  
+   - Name: `ORG_PROFILE_SYNC_PAT`  
+   - Value: 위에서 만든 토큰
+3. `master` 또는 `main`에 `README.md`를 **push**하면 워크플로 **Sync org profile README**가 실행됩니다.  
+   - 필요 시 [Actions 탭](https://github.com/araplatformkd/ara-overview/actions)에서 **Run workflow**로 수동 실행할 수 있습니다.
+
+토큰을 넣기 전에는 **수동**으로 `.github`의 `profile/README.md`를 맞춰 두어야 조직 홈 문구가 바뀝니다.
 
 ---
 
