@@ -209,12 +209,12 @@ npm run release
 
 ```text
 DEV_ARA/
-├── ara-overview/          # 이 메타 저장소
-├── ara-documents/
-├── ara-edge-server211/
-├── ara-backend-node/
-├── ara-front-web/
-└── ara-mobile-app/
+├── ara-overview/           # 이 메타 저장소
+├── ara-documents/          # 각종 문서 및 기술자료(저장소 만들예정)
+├── ara-edge-server211/     # 아라플랫폼 프레임워크
+├── ara-backend-node/       # 디바이스 백엔드 프로그램
+├── ara-front-web/          # 디바이스 모니터링 터치 프로그램
+└── ara-mobile-app/         # 디바이스 설정/제어 모바일앱
 ```
 
 각 저장소는 **독립 Git 저장소**로 클론하는 것을 권장합니다(서브모듈은 팀 합의 후).
