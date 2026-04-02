@@ -33,7 +33,7 @@
 | **[ara-backend-node](https://github.com/araplatformkd/ara-backend-node)**     | **현장 백엔드** — Raspberry Pi 등에서 동작하는 Node.js 기반 실내/온실 자동화(MQTT·Modbus·InfluxDB·Express 등)              |
 | **[ara-front-web](https://github.com/araplatformkd/ara-front-web)**           | **웹 관리자·대시보드** 프론트엔드(AdminLTE 기반 UI 등)                                                               |
 | **[ara-mobile-app](https://github.com/araplatformkd/ara-mobile-app)**         | **모바일 앱** — Flutter 기반(WebView·Cordova 대체 마이그레이션 등)                                                  |
-| **[ara-document](https://github.com/araplatformkd/ara-document)**             | **추가중** —모노레포·부가 프로젝트 묶음·자료·문서·외부협업문서 등                                                              |
+| **[ara-documents](https://github.com/araplatformkd/ara-document)**            | **추가중** —모노레포·부가 프로젝트 묶음·자료·문서·외부협업문서 등                                                              |
 
 
 > 일부 저장소는 비공개(Private)일 수 있습니다. 접근이 필요하면 조직 관리자에게 권한을 요청하세요.
@@ -213,6 +213,7 @@ npm run release
 ```text
 DEV_ARA/
 ├── ara-overview/          # 이 메타 저장소
+├── ara-documents/
 ├── ara-edge-server211/
 ├── ara-backend-node/
 ├── ara-front-web/
