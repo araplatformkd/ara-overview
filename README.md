@@ -9,18 +9,15 @@
 
 ---
 
-## GitHub Actions로 조직 profile 자동 반영
+## GitHub Repo에 올려진 내용
 
 `README.md`만 고쳐서 [조직 Overview](https://github.com/araplatformkd)에 반영하려면, 이 저장소의 워크플로가 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`를 덮어씁니다.
 
 1. **토큰 만들기** (조직/저장소에 쓸 수 있는 계정으로 로그인)
-  - **Fine-grained PAT** (권장): 대상 조직 `araplatformkd` → 저장소 `**.github`만** 선택 → **Contents: Read and write**  
-  - 또는 **Classic PAT**: `repo` 범위 (범위가 더 넓음)
-2. **[ara-overview** → Settings → Secrets and variables → Actions](https://github.com/araplatformkd/ara-overview/settings/secrets/actions) → **New repository secret**
+  - **Fine-grained PAT** (권장): 대상 조직 `araplatformkd` → 저장소
+2. [ara-overview → Settings → Secrets and variables → Actions](https://github.com/araplatformkd/ara-overview/settings/secrets/actions) → **New repository secret**
   - Name: `ORG_PROFILE_SYNC_PAT`  
   - Value: 위에서 만든 토큰
-3. `master` 또는 `main`에 `README.md`를 **push**하면 워크플로 **Sync org profile README**가 실행됩니다.
-  - 필요 시 [Actions 탭](https://github.com/araplatformkd/ara-overview/actions)에서 **Run workflow**로 수동 실행할 수 있습니다.
 
 토큰을 넣기 전에는 **수동**으로 `.github`의 `profile/README.md`를 맞춰 두어야 조직 홈 문구가 바뀝니다.
 
