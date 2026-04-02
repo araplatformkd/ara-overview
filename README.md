@@ -18,15 +18,7 @@
   - `./config.js` : 모드버스통신을 위한 설정파일 
 3. 디바이스의 OS는 **SD Card Copier** 앱을 활용합니다.
 
-`README.md`만 고쳐서 [조직 Overview](https://github.com/araplatformkd)에 반영하려면, 이 저장소의 워크플로가 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`를 덮어씁니다.
-
-1. **토큰 만들기** (조직/저장소에 쓸 수 있는 계정으로 로그인)
-  - **Fine-grained PAT** (권장): 대상 조직 `araplatformkd` → 저장소
-2. [ara-overview → Settings → Secrets and variables → Actions](https://github.com/araplatformkd/ara-overview/settings/secrets/actions) → **New repository secret**
-  - Name: `ORG_PROFILE_SYNC_PAT`  
-  - Value: 위에서 만든 토큰
-
-토큰을 넣기 전에는 **수동**으로 `.github`의 `profile/README.md`를 맞춰 두어야 조직 홈 문구가 바뀝니다.
+토큰을 홈 문구가 바뀝니다.
 
 ---
 
