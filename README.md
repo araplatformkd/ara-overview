@@ -121,6 +121,10 @@ npm install
 # 운영: indexIndoorV2.js 및 config/indoor-config.json 등 현장 설정
 # 개발환경 실행시 npm run dev 
 # 빌드환경 npm run build
+
+
+# ./dist 폴더는 디바이스에 자동업데이트 됩니다. (자동/정지 설정가능)
+# 현재 백엔드 프로그램 자동업데이트 설정은 "정지" 입니다 
 ```
 
 ### 4. ara-front-web (웹)
@@ -135,6 +139,8 @@ npm install
 
 # 개발환경 실행시 npm run dev 
 # 빌드환경 npm run build
+
+# ./dist 폴더는 디바이스에 자동업데이트 됩니다. (자동/정지 설정가능)
 ```
 
 ### 5. ara-mobile-app (Cordova / Flutter)
