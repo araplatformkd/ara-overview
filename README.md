@@ -7,8 +7,6 @@
 
 각 저장소의 자세한 내용은 각 저장소의 [README.md](http://README.md) 파일에 자세히 설명되어져 있습니다. 
 
-
-
 ---
 
 ## GitHub Repo에 올려진 내용
@@ -77,9 +75,7 @@ flowchart LR
 - **ara-front-web** : 웹앱으로 제작되어 졌으며 실시간 모니터링 및 환경설정 앱입니다.  
 - **ara-mobile-app**: 
   - 운영자·관리자가 상태를 보고 설정하는 **UI 계층**입니다. 실제 연결 URL·API는 배포 환경(엣지 IP, 도메인, 리버스 프록시)에 맞춥니다.
-  - Cordova WebView 를 활용하여 안드로이드앱을 제작하여 Google Firebase Storage 를 통해 앱업데이트 연동되어져 있습니다. 
-  - Flutter WebViewe 를 활용하여 제작된 안드로이드 앱. (현재 이 앱은 서비스 되고 있지 않음).
-  - 테스트
+  - **Cordova / Flutter WebView** 를 활용하여 안드로이드앱을 제작후 Google Firebase Storage 를 통해 앱업데이트 연동되어 있습니다.
 
 ---
 
@@ -110,7 +106,7 @@ npm start
 
 ### 3. ara-backend-node (온실·실내 노드)
 
-- **포함**: 양액기 / 환경제어의 두시스템 모두 동일한 백엔드를 사용합니다. 
+- **포함**: 양액기와 환경제어 두시스템 모두 동일한 백엔드를 사용합니다. 
   - 해당시스템의 MQTT topic 에 따라 재시작시 적용됩니다. 
   - "/home/pi/kd/indoor/config.js 내에 정의되어진 토픽키가 "../IRRIGATION/..." 이면 양액기로 작동, "../SWITCHGEAR/..." 이면 환경제어로 작동됩니다.
 - **역할**: Pi 등에서 `indexIndoorV2.js` 중심으로 MQTT·Modbus·Influx·웹을 구동.
@@ -123,6 +119,8 @@ cd ara-backend-node
 npm install
 # 개발/시뮬: README의 simulator 스크립트 참고
 # 운영: indexIndoorV2.js 및 config/indoor-config.json 등 현장 설정
+# 개발환경 실행시 npm run dev 
+# 빌드환경 npm run build
 ```
 
 ### 4. ara-front-web (웹)
@@ -130,10 +128,77 @@ npm install
 - 저장소 README·`package.json` 스크립트에 따라 의존성 설치 및 개발 서버 실행.
 - **백엔드/엣지 주소**는 환경 변수 또는 설정 파일로 맞춥니다(팀 표준 따름).
 
-### 5. ara-mobile-app (Flutter)
+```bash
+git clone https://github.com/araplatformkd/ara-front-web.git
+cd ara-front-web
+npm install
 
-- `app-flutter/`(또는 저장소 구조에 맞는 경로)에서 Flutter SDK로 빌드.
+# 개발환경 실행시 npm run dev 
+# 빌드환경 npm run build
+```
+
+### 5. ara-mobile-app (Cordova / Flutter)
+
+- `./app-flutter/`(또는 저장소 구조에 맞는 경로)에서 Flutter SDK로 빌드.
+- `./app-cordova/`(또는 저장소 구조에 맞는 경로)에서 Corodva SDK로 빌드.
 - 웹뷰·API 엔드포인트는 제품 빌드 설정에 따릅니다.
+
+```bash
+git clone https://github.com/araplatformkd/ara-mobile-app.git
+cd ara-mobile-app
+npm install
+
+
+# 개발환경 실행시(웹앱 개발시)
+npm run dev 
+
+# 빌드환경 - 안드로이드앱 빌드 절차 
+npm run build
+- webpack으로 빌드후 ./dist 폴더 생성 
+- post-build.js 로 ./dist내 정적 웹앱을 ./distWebapp(웹브라우저용)으로 복사 
+
+npm run cordova:copy
+- ./dist → ./app-cordova/www
+
+cd cordova-app
+npm run release
+- app-debug.apk 파일 생성 
+
+# 빌드환경 npm run build
+
+```
+
+## **Cordova / Flutter 같은 점**
+
+1. **웹 소스는 동일**
+
+- 저장소 **루트**에서 npm run build → dist/ 생성 (Cordova와 동일).
+
+1. **앱 안에 보이는 버전**
+
+- WebView 안 UI는 여전히 **src/js/app-version.js** 를 쓰므로, 사용자에게 맞출 거면 Cordova와 **같이** 올려 주는 게 좋습니다.
+
+## **다른 점 (Flutter 전용)**
+
+
+| 항목      | Cordova                                               | Flutter                                                            |
+| ------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
+| 웹 복사    | npm run cordova:copy → app-cordova/www/               | app-flutter\scripts\copy_web_assets.ps1 → assets/www/              |
+| 네이티브 빌드 | npx cordova build android (+ --release)               | flutter build apk --release (또는 AAB)                               |
+| 네이티브 버전 | app-cordova/config.xml (version, android-versionCode) | pubspec.yaml + android/app/build.gradle의 versionCode / versionName |
+| 서명      | Cordova build.json 등                                  | Android 쪽 [key.properties](http://key.properties) / Gradle 서명 설정   |
+| 배포 스크립트 | app-cordova/scripts/firebase-uploader.js 등            | 프로젝트에 맞게 별도 (Flutter 산출 경로가 다름)                                    |
+
+
+## **Flutter 릴리스 순서 (요약)**
+
+1. (권장) **src/js/app-version.js** 와 맞추고, **Flutter/Android 버전**도 pubspec.yaml·build.gradle에서 정리.
+2. **루트**에서 npm run build.
+3. cd app-flutter → .\scripts\copy_web_assets.ps1 (또는 build_apk.ps1이 1~3을 묶어 줌).
+4. flutter build apk --release (릴리스 서명은 Android 설정에 따라).
+5. 산출물: 대략 app-flutter\build\app\outputs\flutter-apk\app-release.apk.
+
+정리하면, **“npm run build로 웹 만들기 + 버전 의미 맞추기”는 같고**, **복사 경로·빌드 명령·버전/서명 파일은 Flutter 전용 절차**를 따르면 됩니다.
 
 ---
 
