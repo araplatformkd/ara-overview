@@ -117,7 +117,6 @@ flowchart LR
 
 ※ ./workspace 폴더에는 개발소스 전체가 포함되어져 있습니다. "개발 > .tar > 클라우드 업로드 > 사용자다운로드 > 설치" 순서로 앱은 설치가 됩니다   
 
-
 ```bash
 git clone https://github.com/araplatformkd/ara-edge-server211.git
 cd ara-edge-server211
@@ -126,14 +125,12 @@ npm install
 npm start
 ```
 
-### 3. ara-backend-node (온실·실내 노드) 
+### 3. ara-backend-node (온실·실내 노드)
 
 - **포함**: 양액기 / 환경제어의 두시스템 모두 동일한 백엔드를 사용합니다. 
   - 해당시스템의 MQTT topic 에 따라 재시작시 적용됩니다. 
-  - "/home/pi/kd/indoor/config.js 내에 정의되어진 토픽키가 "../IRRIGATION/..." 이면 양액기로 작동, "../SWITCHGEAR/..." 이면 환경제어로 작동됩니다. 
-
+  - "/home/pi/kd/indoor/config.js 내에 정의되어진 토픽키가 "../IRRIGATION/..." 이면 양액기로 작동, "../SWITCHGEAR/..." 이면 환경제어로 작동됩니다.
 - **역할**: Pi 등에서 `indexIndoorV2.js` 중심으로 MQTT·Modbus·Influx·웹을 구동.
-- 
 - **요구**: Node.js **22.x** 권장(저장소 `.nvmrc` / Volta 기준).
 - **빌드**: `npm install` 후 `npm run build`로 `dist/` 생성·배포.
 
