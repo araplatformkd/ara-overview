@@ -10,6 +10,13 @@
 ---
 
 ## GitHub Repo에 올려진 내용
+1. 백엔드 / 프런트엔드 의 `dist/` 폴더는 현장설치 디바이스의 백엔드/프런트엔드에 자동업데이트 설정이 되어져 있습니다. 
+   - 프런트앱의 [pi-auto-update-dist.js](https://github.com/araplatformkd/ara-front-web/tools/)파일은 디바이스에 설치되어져 pm2 process 로 자동 실행됩니다. 
+   - 동일한 파일에서 백엔드/프런트엔드 앱이 각각의 설정으로 업데이트 합니다. 
+2. 2가지 백엔드 설정파일(필수)은 디바이스에 설치되어져 있습니다. 
+   - `./config/indoor-config.json` 자동운전 / 핀맵 / 센서맵 등의 설정파일 
+   - `./config.js` : 모드버스통신을 위한 설정파일 
+3. 
 
 `README.md`만 고쳐서 [조직 Overview](https://github.com/araplatformkd)에 반영하려면, 이 저장소의 워크플로가 [araplatformkd/.github](https://github.com/araplatformkd/.github)의 `profile/README.md`를 덮어씁니다.
 
@@ -103,9 +110,7 @@ cd ara-edge-server211
 npm install
 npm start
 ```
-
 ### 3. ara-backend-node (온실·실내 노드)
-
 - **포함**: 양액기와 환경제어 두시스템 모두 동일한 백엔드를 사용합니다. 
   - 해당시스템의 MQTT topic 에 따라 재시작시 적용됩니다. 
   - "/home/pi/kd/indoor/config.js 내에 정의되어진 토픽키가 "../IRRIGATION/..." 이면 양액기로 작동, "../SWITCHGEAR/..." 이면 환경제어로 작동됩니다.
