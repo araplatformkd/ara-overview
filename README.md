@@ -11,14 +11,13 @@
 
 ## 설치 및 유지보수 관련 주의점
 1. 백엔드 / 프런트엔드 의 `dist/` 폴더는 현장설치 디바이스의 백엔드/프런트엔드에 자동업데이트 설정이 되어져 있습니다(주의!!!). 
-  - 프런트앱의 [pi-auto-update-dist.js](https://github.com/araplatformkd/ara-front-web/tools/)파일은 디바이스에 설치되어져 pm2 process 로 자동 실행됩니다. 
+  - 프런트앱의 [pi-auto-update-dist.js](https://github.com/araplatformkd/ara-front-web-simple/tree/main/tools) 파일은 디바이스에 설치되어져 pm2 process 로 자동 실행됩니다.  
+  - (레거시 저장소 `ara-front-web`은 **사용하지 마세요.**)
   - 동일한 파일에서 백엔드/프런트엔드 앱이 각각의 설정으로 업데이트 합니다. 
 2. 백엔드 시스템의 설정파일(필수)은 디바이스에 설치되어져 있습니다. 
   - `./config/indoor-config.json` 자동운전 / 핀맵 / 센서맵 등의 설정파일 
   - `./config.js` : 모드버스통신을 위한 설정파일 
 3. 디바이스의 OS는 **SD Card Copier** 앱을 활용합니다.
-
-토큰을 홈 문구가 바뀝니다.
 
 ---
 
@@ -30,7 +29,8 @@
 | **[ara-overview](https://github.com/araplatformkd/ara-overview)**             | ( 이 저장소 / Public ) 전체 구조·연동·시작 가이드                                                                   |
 | **[ara-edge-server211](https://github.com/araplatformkd/ara-edge-server211)** | **AG Edge Server** — 온실·시설용 엣지(Node.js). HTTP·정적 리소스·MQTT 브로커·웹앱 레지스트리·시설 관리(`ag.system.facility`) 등 |
 | **[ara-backend-node](https://github.com/araplatformkd/ara-backend-node)**     | **현장 백엔드** — Raspberry Pi 등에서 동작하는 Node.js 기반 실내/온실 자동화(MQTT·Modbus·InfluxDB·Express 등)              |
-| **[ara-front-web](https://github.com/araplatformkd/ara-front-web)**           | **웹 관리자·대시보드** 프론트엔드(AdminLTE 기반 UI 등)                                                               |
+| **[ara-front-web-simple](https://github.com/araplatformkd/ara-front-web-simple)** | **웹 관리자·대시보드** 프론트엔드(현장 터치·모니터링 UI 등). **이 경로를 사용하세요.** |
+| ~~**[ara-front-web](https://github.com/araplatformkd/ara-front-web)**~~           | ~~레거시~~ — **신규·유지보수에 사용하지 않음** (참고용 링크만 유지) |
 | **[ara-mobile-app](https://github.com/araplatformkd/ara-mobile-app)**         | **모바일 앱** — Flutter 기반(WebView·Cordova 대체 마이그레이션 등)                                                  |
 | **[ara-documents](https://github.com/araplatformkd/ara-document)**            | **추가중** —모노레포·부가 프로젝트 묶음·자료·문서·외부협업문서 등                                                              |
 
@@ -58,7 +58,7 @@ flowchart LR
   end
 
   subgraph clients["클라이언트"]
-    WEB["ara-front-web"]
+    WEB["ara-front-web-simple"]
     MOB["ara-mobile-app"]
   end
 
@@ -71,7 +71,7 @@ flowchart LR
 
 - **ara-edge-server211**: 시설 단위 **플랫폼 코어**. 웹앱을 등록·실행하고, MQTT로 장비·서비스를 묶습니다. `workspace/` 아래 앱(예: 시설 관리, 제어기·양액기 연동, CCTV 등)이 동작합니다.
 - **ara-backend-node**: **개별 온실/실내 노드**에서 센서·구동기·자동운전·시계열 저장을 담당하는 백엔드입니다. Influx·MQTT 시뮬레이터 등이 포함됩니다.
-- **ara-front-web** : 웹앱으로 제작되어 졌으며 실시간 모니터링 및 환경설정 앱입니다.  
+- **ara-front-web-simple**: 웹앱으로 제작된 실시간 모니터링·환경설정용 프런트엔드입니다. **`ara-front-web`은 사용하지 마세요(레거시).**  
 - **ara-mobile-app**: 
   - 운영자·관리자가 상태를 보고 설정하는 **UI 계층**입니다. 실제 연결 URL·API는 배포 환경(엣지 IP, 도메인, 리버스 프록시)에 맞춥니다.
   - **Cordova / Flutter WebView** 를 활용하여 안드로이드앱을 제작후 Google Firebase Storage 를 통해 앱업데이트 연동되어 있습니다.
@@ -124,14 +124,15 @@ npm install
 # 현재 백엔드 프로그램 자동업데이트 설정은 "정지" 입니다 
 ```
 
-### 4. ara-front-web (웹)
+### 4. ara-front-web-simple (웹)
 
+- **권장 저장소입니다.** `ara-front-web`은 레거시이며 **새 작업·배포에 사용하지 마세요.**
 - 저장소 README·`package.json` 스크립트에 따라 의존성 설치 및 개발 서버 실행.
 - **백엔드/엣지 주소**는 환경 변수 또는 설정 파일로 맞춥니다(팀 표준 따름).
 
 ```bash
-git clone https://github.com/araplatformkd/ara-front-web.git
-cd ara-front-web
+git clone https://github.com/araplatformkd/ara-front-web-simple.git
+cd ara-front-web-simple
 npm install
 
 # 개발환경 실행시 npm run dev 
@@ -213,7 +214,7 @@ npm run release
 ├── ara-documents/          # 각종 문서 및 기술자료(저장소 만들예정)
 ├── ara-edge-server211/     # 아라플랫폼 프레임워크
 ├── ara-backend-node/       # 디바이스 백엔드 프로그램
-├── ara-front-web/          # 디바이스 모니터링 터치 프로그램
+├── ara-front-web-simple/   # 디바이스 모니터링 터치 프로그램 (권장)
 └── ara-mobile-app/         # 디바이스 설정/제어 모바일앱
 ```
 
