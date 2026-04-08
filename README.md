@@ -30,7 +30,7 @@
 | **[ara-edge-server211](https://github.com/araplatformkd/ara-edge-server211)** | **AG Edge Server** — 온실·시설용 엣지(Node.js). HTTP·정적 리소스·MQTT 브로커·웹앱 레지스트리·시설 관리(`ag.system.facility`) 등 |
 | **[ara-backend-node](https://github.com/araplatformkd/ara-backend-node)**     | **현장 백엔드** — Raspberry Pi 등에서 동작하는 Node.js 기반 실내/온실 자동화(MQTT·Modbus·InfluxDB·Express 등)              |
 | **[ara-front-web-simple](https://github.com/araplatformkd/ara-front-web-simple)** | **웹 관리자·대시보드** 프론트엔드(현장 터치·모니터링 UI 등). **이 경로를 사용하세요.** |
-| ~~**[ara-front-web](https://github.com/araplatformkd/ara-front-web)**~~           | ~~레거시~~ — **신규·유지보수에 사용하지 않음** (참고용 링크만 유지) |
+| ~~**[ara-front-web](https://github.com/araplatformkd/ara-front-web)**~~           | ~~레거시~~ — **신규·유지보수에 사용하지 않음** (장비에 오토업데이트중) |
 | **[ara-mobile-app](https://github.com/araplatformkd/ara-mobile-app)**         | **모바일 앱** — Flutter 기반(WebView·Cordova 대체 마이그레이션 등)                                                  |
 | **[ara-documents](https://github.com/araplatformkd/ara-document)**            | **추가중** —모노레포·부가 프로젝트 묶음·자료·문서·외부협업문서 등                                                              |
 
